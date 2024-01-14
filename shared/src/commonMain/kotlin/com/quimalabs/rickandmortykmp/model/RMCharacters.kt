@@ -41,12 +41,22 @@ data class Location (
 @Serializable
 enum class Species(val value: String) {
     @SerialName("Alien") Alien("Alien"),
-    @SerialName("Human") Human("Human");
+    @SerialName("Human") Human("Human"),
+    @SerialName("Humanoid") Humanoid("Humanoid"),
+    @SerialName("Cronenberg") Cronenberg("Cronenberg");
+    companion object {
+        fun fromValue(value: String): Species = entries
+            .firstOrNull { it.value.equals(value, ignoreCase = true) } ?: Species.Human
+    }
 }
 
-@Serializable
+
 enum class Status(val value: String) {
-    @SerialName("Alive") Alive("Alive"),
-    @SerialName("Dead") Dead("Dead"),
-    @SerialName("unknown") Unknown("unknown");
+    Alive("Alive"),
+    Dead("Dead"),
+    Unknown("unknown");
+
+    companion object {
+        fun fromValue(value: String): Status = entries.firstOrNull { it.value.equals(value, ignoreCase = true) } ?: Unknown
+    }
 }

@@ -3,7 +3,8 @@ import io.ktor.client.request.HttpResponseData
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
 
-class CharacterItemsMapper() {
+
+class CharacterItemsMapper {
     @Serializable
     data class RemoteCharacterItem(
         val id: Long,
@@ -22,19 +23,19 @@ class CharacterItemsMapper() {
                 RMCharacter(
                     id = it.id,
                     name = it.name,
-                    status = Status.valueOf(it.status),
+                    status = Status.fromValue(it.status) ,
                     species = Species.valueOf(it.species),
                     image = it.image,
                 )
             }
     }
 
+
     sealed class Error : Throwable() {
         object InvalidData : Error()
     }
     companion object {
         fun map(data: ByteArray, response: HttpResponseData): List<RMCharacter> {
-            println("this is the value: $response.statusCode.value")
             if (response.statusCode.value!= 200) {
                 throw Error.InvalidData
             }

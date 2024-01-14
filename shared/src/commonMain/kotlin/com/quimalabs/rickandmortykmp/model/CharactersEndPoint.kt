@@ -10,7 +10,7 @@ enum class CharactersEndPoint {
         return when (this) {
             GET -> {
                 val urlBuilder = URLBuilder(baseURL)
-                urlBuilder.path("character")
+                urlBuilder.path("api/character/")
                 if (page != 0) {
                     urlBuilder.parameters.append("page", page.toString())
                 }
