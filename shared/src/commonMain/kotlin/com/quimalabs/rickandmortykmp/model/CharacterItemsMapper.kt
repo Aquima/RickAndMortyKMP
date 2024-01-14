@@ -24,7 +24,7 @@ class CharacterItemsMapper {
                     id = it.id,
                     name = it.name,
                     status = Status.fromValue(it.status) ,
-                    species = Species.valueOf(it.species),
+                    species = Species.fromValue(it.species),
                     image = it.image,
                 )
             }

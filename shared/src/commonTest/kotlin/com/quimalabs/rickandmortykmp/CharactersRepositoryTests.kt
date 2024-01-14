@@ -21,11 +21,11 @@ class CharactersRepositoryTests {
         Dispatchers.setMain(testDispatcher)
 
     }
-//    @AfterTest
-//    fun tearDown() {
-////        Dispatchers.resetMain()
-////        testScope.cancel()
-//    }
+    @AfterTest
+    fun tearDown() {
+        Dispatchers.resetMain()
+        testScope.cancel()
+    }
     @Test
     fun someFunction() = testScope.runTest {
         val repository: CharacterRepository = CharacterRepository()
@@ -40,8 +40,8 @@ class CharactersRepositoryTests {
                         println("Handle success state")
                         val result = state.data
                         println(result.characters.size)
-                        assertTrue(result.characters.size > 0,"Looks good")
                         // Do something with characters
+                        assertTrue(result.characters.size > 0,"Looks good")
                     }
                     is CharactersRequestState.Error -> {
                         // Handle error state
