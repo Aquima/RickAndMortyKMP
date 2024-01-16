@@ -5,7 +5,9 @@ plugins {
     alias(libs.plugins.kotlinxSerialization)
     alias(libs.plugins.skieTouchlab)
 }
-skie { isEnabled.set(false) }
+skie {
+    isEnabled.set(true)
+}
 kotlin {
     androidTarget {
         compilations.all {

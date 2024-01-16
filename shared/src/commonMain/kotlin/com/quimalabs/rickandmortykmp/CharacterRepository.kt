@@ -1,6 +1,7 @@
 package com.quimalabs.rickandmortykmp
 
 import co.touchlab.kermit.Logger
+import co.touchlab.skie.configuration.annotations.FlowInterop
 import com.quimalabs.rickandmortykmp.model.CharacterItemsMapper
 import com.quimalabs.rickandmortykmp.model.CharactersEndPoint
 import com.quimalabs.rickandmortykmp.model.RMCharacter
@@ -26,8 +27,8 @@ class CharacterRepository {
         }
     }
     private val baseURL = Url("https://rickandmortyapi.com/")
-
-    suspend fun getCharacter(page: Int, name:String): Flow<CharactersRequestState>{
+    @FlowInterop.Enabled
+    fun getCharacter(page: Int, name:String): Flow<CharactersRequestState>{
         val url = CharactersEndPoint.GET.url(baseURL, page, name)
         println(url)
         return flow {
