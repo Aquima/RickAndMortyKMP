@@ -17,20 +17,19 @@ struct CharactersView: View {
     }
     var body: some View {
        
-        HStack {
+        NavigationStack {
             if viewModel.charactersRequestState?.isSuccess() == true {
                 List(viewModel.charactersRequestState?.getCharacters() ?? [], id: \.id) { element in
                     CharacterItemView(character: .constant(element))
                 }
+                .listStyle(.plain)
+                .navigationTitle("Characters")
             } else {
                 Text("no loaded characters")
             }
         }.task {
             await viewModel.fetchData()
         }
-   
-       
-        
     }
 }
 
